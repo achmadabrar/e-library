@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Admin - E-Library Farmasi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 50%, #dcfce7 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+            border: 2px solid rgba(167, 243, 208, 0.3);
+            width: 100%;
+            max-width: 450px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #14b8a6, #a3e635, #14b8a6);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+ .logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    object-fit: contain;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    padding: 0;
+}
+
+@media (max-width: 768px) {
+    .logo {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+        .login-title {
+            color: #064e3b;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-subtitle {
+            color: #059669;
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            color: #064e3b;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem 1.2rem;
+            border: 2px solid #a7f3d0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.8);
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #14b8a6;
+            box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+            background: white;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #059669;
+            cursor: pointer;
+            font-size: 1.2rem;
+            padding: 0.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .password-toggle:hover {
+            color: #14b8a6;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .remember-checkbox {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .remember-checkbox input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            accent-color: #14b8a6;
+        }
+
+        .remember-checkbox label {
+            color: #374151;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .forgot-link {
+            color: #059669;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .forgot-link:hover {
+            color: #14b8a6;
+            text-decoration: underline;
+        }
+
+        .login-button {
+            width: 100%;
+            background: linear-gradient(135deg, #14b8a6, #059669);
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(20, 184, 166, 0.4);
+        }
+
+        .login-button:hover::before {
+            left: 100%;
+        }
+
+        .login-button:active {
+            transform: translateY(0);
+        }
+
+        .login-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .error-message {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            display: none;
+            font-size: 0.9rem;
+            animation: slideDown 0.3s ease;
+        }
+
+        .success-message {
+            background: #f0fdf4;
+            border: 1px solid #a7f3d0;
+            color: #059669;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            display: none;
+            font-size: 0.9rem;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .back-to-home {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .back-link {
+            color: #059669;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #14b8a6;
+            transform: translateX(-3px);
+        }
+
+        .admin-info {
+            background: rgba(20, 184, 166, 0.1);
+            border: 1px solid rgba(20, 184, 166, 0.2);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            font-size: 0.85rem;
+            color: #064e3b;
+        }
+
+        .admin-info h4 {
+            margin-bottom: 0.5rem;
+            color: #0f766e;
+        }
+
+        .loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ffffff;
+            border-top: 2px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 0.5rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .login-container {
+                margin: 1rem;
+                padding: 2rem;
+            }
+
+            .login-title {
+                font-size: 1.5rem;
+            }
+
+            .remember-forgot {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container fade-in">
+        <!-- Logo Section -->
+          <div class="logo-section">
+    <img src="logo.png" alt="Logo" class="logo" style="object-fit:cover;">
+            <h1 class="login-title">Admin Portal</h1>
+            <p class="login-subtitle">E-Library Farmasi - Kementerian Kesehatan RI</p>
+        </div>
+
+        <!-- Error/Success Messages -->
+        <div id="errorMessage" class="error-message"></div>
+        <div id="successMessage" class="success-message"></div>
+
+        <!-- Admin Info -->
+        <div class="admin-info">
+            <h4>ℹ️ Informasi Login</h4>
+            <p>Halaman ini khusus untuk administrator sistem E-Library. Silakan gunakan kredensial yang telah diberikan oleh IT Administrator.</p>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username" class="form-label">👤 Username / NIP</label>
+                <input type="text" id="username" name="username" class="form-input" placeholder="Masukkan username atau NIP" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="form-label">🔒 Password</label>
+                <div class="password-container">
+                    <input type="password" id="password" name="password" class="form-input" placeholder="Masukkan password" required>
+                    <button type="button" class="password-toggle" onclick="togglePassword()">👁️</button>
+                </div>
+            </div>
+
+            <div class="remember-forgot">
+                <div class="remember-checkbox">
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Ingat saya</label>
+                </div>
+                <a href="#" class="forgot-link" onclick="showForgotPassword()">Lupa password?</a>
+            </div>
+
+            <button type="submit" class="login-button" id="loginButton">
+                <span class="loading-spinner" id="loadingSpinner"></span>
+                <span id="buttonText">🔐 Masuk ke Dashboard</span>
+            </button>
+        </form>
+
+        <!-- Back to Home -->
+        <div class="back-to-home">
+            <a href="index.html" class="back-link">
+                ← Kembali ke Beranda
+            </a>
+        </div>
+    </div>
+
+    <!-- Modal untuk Reset Password -->
+    <div id="forgotModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; backdrop-filter: blur(5px);">
+        <div style="background: white; margin: 10% auto; padding: 2rem; width: 90%; max-width: 500px; border-radius: 20px; position: relative;">
+            <span style="position: absolute; top: 1rem; right: 1.5rem; font-size: 2rem; cursor: pointer; color: #059669;" onclick="closeForgotModal()">&times;</span>
+            <h2 style="color: #064e3b; margin-bottom: 1rem;">Reset Password</h2>
+            <p style="color: #374151; margin-bottom: 1.5rem;">Masukkan email atau username Anda untuk mendapatkan link reset password.</p>
+            
+            <form id="forgotForm">
+                <div class="form-group">
+                    <label class="form-label">📧 Email / Username</label>
+                    <input type="text" class="form-input" placeholder="email@kemkes.go.id atau username" required>
+                </div>
+                <div style="text-align: right; gap: 1rem; display: flex; justify-content: flex-end;">
+                    <button type="button" style="background: #6b7280; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer;" onclick="closeForgotModal()">Batal</button>
+                    <button type="submit" style="background: #14b8a6; color: white; border: none; padding: 0.8rem 1.5rem; border-radius: 8px; cursor: pointer;">📧 Kirim Link</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Sample admin credentials (in production, this would be handled by backend)
+        const adminCredentials = [
+            { username: 'admin', password: 'admin123', name: 'Administrator Sistem', role: 'Super Admin' },
+            { username: 'farmasi.admin', password: 'farmasi2024', name: 'Admin Farmasi', role: 'Content Admin' },
+            { username: '198512345', password: 'kemkes2024', name: 'Dr. Budi Santoso', role: 'Director Admin' },
+            { username: 'library.admin', password: 'library123', name: 'Admin E-Library', role: 'Library Admin' }
+        ];
+
+        // Toggle password visibility
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const toggleButton = document.querySelector('.password-toggle');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleButton.textContent = '🙈';
+            } else {
+                passwordInput.type = 'password';
+                toggleButton.textContent = '👁️';
+            }
+        }
+
+        // Show error message
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+            
+            // Hide after 5 seconds
+            setTimeout(() => {
+                errorDiv.style.display = 'none';
+            }, 5000);
+        }
+
+        // Show success message
+        function showSuccess(message) {
+            const successDiv = document.getElementById('successMessage');
+            successDiv.textContent = message;
+            successDiv.style.display = 'block';
+            
+            // Hide after 3 seconds
+            setTimeout(() => {
+                successDiv.style.display = 'none';
+            }, 3000);
+        }
+
+        // Login form submission
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const remember = document.getElementById('remember').checked;
+            
+            // Show loading
+            const button = document.getElementById('loginButton');
+            const spinner = document.getElementById('loadingSpinner');
+            const buttonText = document.getElementById('buttonText');
+            
+            button.disabled = true;
+            spinner.style.display = 'inline-block';
+            buttonText.textContent = 'Memverifikasi...';
+            
+            // Simulate API call delay
+            setTimeout(() => {
+                // Check credentials
+                const user = adminCredentials.find(u => 
+                    (u.username === username) && (u.password === password)
+                );
+                
+                if (user) {
+                    // Successful login
+                    showSuccess(`Selamat datang, ${user.name}!`);
+                    
+                    // Store user session (in production, use secure tokens)
+                    const userData = {
+                        username: user.username,
+                        name: user.name,
+                        role: user.role,
+                        loginTime: new Date().toISOString(),
+                        remember: remember
+                    };
+                    
+                    // Store in memory (since we can't use localStorage in artifacts)
+                    window.currentUser = userData;
+                    
+                    // Redirect to dashboard after delay
+                    setTimeout(() => {
+                        showDashboard(userData);
+                    }, 2000);
+                } else {
+                    // Failed login
+                    showError('Username atau password salah. Silakan coba lagi.');
+                    
+                    // Reset button
+                    button.disabled = false;
+                    spinner.style.display = 'none';
+                    buttonText.textContent = '🔐 Masuk ke Dashboard';
+                }
+            }, 1500);
+        });
+
+        // Show forgot password modal
+        function showForgotPassword() {
+            document.getElementById('forgotModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close forgot password modal
+        function closeForgotModal() {
+            document.getElementById('forgotModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Handle forgot password form
+        document.getElementById('forgotForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulate sending reset email
+            showSuccess('Link reset password telah dikirim ke email Anda!');
+            closeForgotModal();
+        });
+
+        // Show dashboard (simulate redirect to admin dashboard)
+        function showDashboard(user) {
+            // In production, this would redirect to actual dashboard
+            const dashboardHTML = `
+                <div style="text-align: center; padding: 3rem; background: white; border-radius: 20px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);">
+                    <div style="font-size: 4rem; margin-bottom: 1rem;">🎉</div>
+                    <h2 style="color: #064e3b; margin-bottom: 1rem;">Login Berhasil!</h2>
+                    <p style="color: #374151; margin-bottom: 2rem;">Selamat datang, <strong>${user.name}</strong></p>
+                    <div style="background: #f0fdf4; padding: 1rem; border-radius: 10px; margin-bottom: 2rem;">
+                        <p><strong>Role:</strong> ${user.role}</p>
+                        <p><strong>Login Time:</strong> ${new Date().toLocaleString('id-ID')}</p>
+                    </div>
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <button onclick="location.reload()" style="background: #14b8a6; color: white; border: none; padding: 1rem 2rem; border-radius: 10px; cursor: pointer;">📊 Dashboard</button>
+                        <button onclick="location.href='index.html'" style="background: #6b7280; color: white; border: none; padding: 1rem 2rem; border-radius: 10px; cursor: pointer;">🏠 Beranda</button>
+                        <button onclick="logout()" style="background: #dc2626; color: white; border: none; padding: 1rem 2rem; border-radius: 10px; cursor: pointer;">🚪 Logout</button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.innerHTML = `
+                <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 50%, #dcfce7 100%); padding: 2rem;">
+                    ${dashboardHTML}
+                </div>
+            `;
+        }
+
+        // Logout function
+        function logout() {
+            window.currentUser = null;
+            location.reload();
+        }
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('forgotModal');
+            if (e.target === modal) {
+                closeForgotModal();
+            }
+        });
+
+        // Auto-focus username input
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('username').focus();
+        });
+
+        // Add keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            // Escape to close modal
+            if (e.key === 'Escape') {
+                closeForgotModal();
+            }
+        });
+
+        // Form validation and UX improvements
+        document.getElementById('username').addEventListener('input', function() {
+            const errorDiv = document.getElementById('errorMessage');
+            if (errorDiv.style.display === 'block') {
+                errorDiv.style.display = 'none';
+            }
+        });
+
+        document.getElementById('password').addEventListener('input', function() {
+            const errorDiv = document.getElementById('errorMessage');
+            if (errorDiv.style.display === 'block') {
+                errorDiv.style.display = 'none';
+            }
+        });
+
+        // Show demo credentials info after page load
+        setTimeout(() => {
+            if (!window.currentUser) {
+                const infoHTML = `
+                    <div style="position: fixed; bottom: 20px; right: 20px; background: rgba(20, 184, 166, 0.9); color: white; padding: 1rem; border-radius: 10px; font-size: 0.85rem; max-width: 300px; backdrop-filter: blur(10px);">
+                        <strong>🔑 Demo Credentials:</strong><br>
+                        Username: <code>admin</code><br>
+                        Password: <code>admin123</code><br>
+                        <small style="opacity: 0.8;">Atau coba: farmasi.admin / farmasi2024</small>
+                    </div>
+                `;
+                document.body.insertAdjacentHTML('beforeend', infoHTML);
+                
+                // Hide after 10 seconds
+                setTimeout(() => {
+                    const demoInfo = document.querySelector('[style*="position: fixed; bottom: 20px"]');
+                    if (demoInfo) {
+                        demoInfo.remove();
+                    }
+                }, 10000);
+            }
+        }, 3000);
+    </script>
+</body>
+</html>

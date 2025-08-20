@@ -1,0 +1,1072 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Direktorat Produksi dan Distribusi Farmasi - E-Library</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fffe 100%);
+            border-bottom: 3px solid #2dd4bf;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+       .logo {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    object-fit: contain;
+    background: none;
+    padding: 0;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .logo {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+        .header-title {
+            color: #0f766e;
+        }
+
+        .header-title h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .header-title p {
+            font-size: 0.9rem;
+            color: #059669;
+            opacity: 0.8;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #0f766e;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            background: #14b8a6;
+            color: white;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #064e3b;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #059669;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #a7f3d0;
+            border-radius: 50px;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.9);
+        }
+
+        .search-box:focus {
+            border-color: #14b8a6;
+            box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #14b8a6;
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background: #0f766e;
+            transform: translateY(-50%) scale(1.05);
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            background: rgba(255,255,255,0.8);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid #a7f3d0;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #14b8a6;
+        }
+
+        .stat-label {
+            color: #059669;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #064e3b;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .category-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fffe 100%);
+            border: 2px solid #a7f3d0;
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #14b8a6, #a3e635);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(20, 184, 166, 0.15);
+            border-color: #14b8a6;
+        }
+
+        .category-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .category-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #14b8a6, #a3e635);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .category-title {
+            font-size: 1.4rem;
+            color: #064e3b;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .category-count {
+            color: #059669;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+
+        .recent-books {
+            background: #f8fffe;
+            padding: 4rem 0;
+            margin: 4rem -2rem 0 -2rem;
+        }
+
+        .recent-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .book-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .book-cover {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #14b8a6, #a3e635);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            position: relative;
+        }
+
+        .book-info {
+            padding: 1.5rem;
+        }
+
+        .book-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #064e3b;
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+
+        .book-author {
+            color: #059669;
+            margin-bottom: 1rem;
+        }
+
+        .book-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #14b8a6;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0f766e;
+            transform: scale(1.05);
+        }
+
+        .btn-secondary {
+            background: #a7f3d0;
+            color: #064e3b;
+        }
+
+        .btn-secondary:hover {
+            background: #6ee7b7;
+        }
+
+        .admin-section {
+            background: #064e3b;
+            color: white;
+            padding: 4rem 0;
+            margin: 4rem -2rem 0 -2rem;
+        }
+
+        .admin-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .admin-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .admin-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-admin {
+            background: #14b8a6;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-admin:hover {
+            background: #0f766e;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            background: #064e3b;
+            color: white;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 5% auto;
+            padding: 2rem;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 20px;
+            position: relative;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .close {
+            position: absolute;
+            top: 1rem;
+            right: 1.5rem;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #059669;
+        }
+
+        .reader-container {
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-top: 1rem;
+            min-height: 400px;
+            font-family: Georgia, serif;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .stats-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .books-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+           <div class="logo-section">
+    <img src="logo.png" alt="Logo" class="logo" style="object-fit:cover;">
+    <div class="header-title">
+        <h1>Direktorat Produksi dan Distribusi Farmasi</h1>
+        <p>Kementerian Kesehatan Republik Indonesia</p>
+    </div>
+</div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="active">Beranda</a></li>
+                    <li><a href="#" onclick="showBooks()">E-Books</a></li>
+                    <!-- <li><a href="#" onclick="showAdmin()">Admin</a></li> -->
+                    <li><a href="about.html" onclick="showAbout()">Tentang</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-container fade-in">
+            <h1 class="hero-title">E-Library Farmasi</h1>
+            <p class="hero-subtitle">
+                Pusat Informasi Digital untuk Produksi dan Distribusi Farmasi Indonesia
+            </p>
+            
+            <div class="search-container">
+                <input type="text" class="search-box" placeholder="Cari e-book, panduan, regulasi..." id="searchInput">
+                <button class="search-btn" onclick="searchBooks()">
+                    🔍 Cari
+                </button>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number">152</div>
+                    <div class="stat-label">Total E-Books</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">28</div>
+                    <div class="stat-label">Kategori</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1,247</div>
+                    <div class="stat-label">Total Unduhan</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <h2 class="section-title">Kategori E-Books</h2>
+        
+        <div class="categories-grid">
+            <div class="category-card" onclick="filterBooks('regulasi')">
+                <div class="category-icon">📋</div>
+                <h3 class="category-title">Regulasi & Kebijakan</h3>
+                <p class="category-count">24 E-Books</p>
+            </div>
+            
+            <div class="category-card" onclick="filterBooks('produksi')">
+                <div class="category-icon">🏭</div>
+                <h3 class="category-title">Panduan Produksi</h3>
+                <p class="category-count">32 E-Books</p>
+            </div>
+            
+            <div class="category-card" onclick="filterBooks('distribusi')">
+                <div class="category-icon">🚚</div>
+                <h3 class="category-title">Sistem Distribusi</h3>
+                <p class="category-count">18 E-Books</p>
+            </div>
+            
+            <div class="category-card" onclick="filterBooks('kualitas')">
+                <div class="category-icon">✅</div>
+                <h3 class="category-title">Kontrol Kualitas</h3>
+                <p class="category-count">28 E-Books</p>
+            </div>
+            
+            <div class="category-card" onclick="filterBooks('keamanan')">
+                <div class="category-icon">🛡️</div>
+                <h3 class="category-title">Keamanan Obat</h3>
+                <p class="category-count">21 E-Books</p>
+            </div>
+            
+            <div class="category-card" onclick="filterBooks('teknologi')">
+                <div class="category-icon">⚗️</div>
+                <h3 class="category-title">Teknologi Farmasi</h3>
+                <p class="category-count">29 E-Books</p>
+            </div>
+        </div>
+
+        <div class="recent-books">
+            <div class="recent-container">
+                <h2 class="section-title" style="color: #064e3b;">E-Books Terbaru</h2>
+                
+                <div class="books-grid" id="booksGrid">
+                    <div class="book-card">
+                        <div class="book-cover">📖</div>
+                        <div class="book-info">
+                            <h3 class="book-title">Panduan Cara Pembuatan Obat yang Baik (CPOB) 2024</h3>
+                            <p class="book-author">Direktorat Produksi dan Distribusi Farmasi</p>
+                            <div class="book-actions">
+                                <button class="btn btn-primary" onclick="readBook('cpob2024')">
+                                    📖 Baca Online
+                                </button>
+                                <a href="#" class="btn btn-secondary" onclick="downloadBook('cpob2024')">
+                                    ⬇️ Download
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="book-card">
+                        <div class="book-cover">📊</div>
+                        <div class="book-info">
+                            <h3 class="book-title">Standar Distribusi Farmasi dan Alat Kesehatan</h3>
+                            <p class="book-author">Tim Ahli Distribusi Farmasi</p>
+                            <div class="book-actions">
+                                <button class="btn btn-primary" onclick="readBook('distribusi2024')">
+                                    📖 Baca Online
+                                </button>
+                                <a href="#" class="btn btn-secondary" onclick="downloadBook('distribusi2024')">
+                                    ⬇️ Download
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="book-card">
+                        <div class="book-cover">🔬</div>
+                        <div class="book-info">
+                            <h3 class="book-title">Kontrol Kualitas Produk Farmasi</h3>
+                            <p class="book-author">Laboratorium Kontrol Kualitas</p>
+                            <div class="book-actions">
+                                <button class="btn btn-primary" onclick="readBook('kualitas2024')">
+                                    📖 Baca Online
+                                </button>
+                                <a href="#" class="btn btn-secondary" onclick="downloadBook('kualitas2024')">
+                                    ⬇️ Download
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="book-card">
+                        <div class="book-cover">⚖️</div>
+                        <div class="book-info">
+                            <h3 class="book-title">Regulasi Terbaru Industri Farmasi Indonesia</h3>
+                            <p class="book-author">Badan Pengawas Obat dan Makanan</p>
+                            <div class="book-actions">
+                                <button class="btn btn-primary" onclick="readBook('regulasi2024')">
+                                    📖 Baca Online
+                                </button>
+                                <a href="#" class="btn btn-secondary" onclick="downloadBook('regulasi2024')">
+                                    ⬇️ Download
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="book-card">
+                        <div class="book-cover">🛡️</div>
+                        <div class="book-info">
+                            <h3 class="book-title">Sistem Keamanan dan Farmakovigilans</h3>
+                            <p class="book-author">Pusat Keamanan Obat</p>
+                            <div class="book-actions">
+                                <button class="btn btn-primary" onclick="readBook('keamanan2024')">
+                                    📖 Baca Online
+                                </button>
+                                <a href="#" class="btn btn-secondary" onclick="downloadBook('keamanan2024')">
+                                    ⬇️ Download
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="book-card">
+                        <div class="book-cover">💊</div>
+                        <div class="book-info">
+                            <h3 class="book-title">Teknologi Formulasi Sediaan Farmasi Modern</h3>
+                            <p class="book-author">Institut Teknologi Farmasi</p>
+                            <div class="book-actions">
+                                <button class="btn btn-primary" onclick="readBook('teknologi2024')">
+                                    📖 Baca Online
+                                </button>
+                                <a href="#" class="btn btn-secondary" onclick="downloadBook('teknologi2024')">
+                                    ⬇️ Download
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="admin-section">
+            <div class="admin-container">
+                <h2 class="admin-title">Panel Administrator</h2>
+                <div class="admin-actions">
+                    <button class="btn-admin" onclick="showUploadForm()">
+                        ➕ Tambah E-Book Baru
+                    </button>
+                    <button class="btn-admin" onclick="showManageBooks()">
+                        📚 Kelola E-Books
+                    </button>
+                    <button class="btn-admin" onclick="showStatistics()">
+                        📊 Lihat Statistik
+                    </button>
+                    <button class="btn-admin" onclick="showUserManagement()">
+                        👥 Kelola Pengguna
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2024 Direktorat Produksi dan Distribusi Farmasi - Kementerian Kesehatan RI</p>
+            <p>Jl. H.R. Rasuna Said Blok X5 Kav. 4-9, Kuningan, Jakarta Selatan 12950</p>
+        </div>
+    </footer>
+
+    <!-- Modal untuk Baca Online -->
+    <div id="bookModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Judul E-Book</h2>
+            <div class="reader-container" id="bookContent">
+                <p>Loading content...</p>
+            </div>
+            <div style="margin-top: 1rem;">
+                <button class="btn btn-secondary" onclick="downloadCurrentBook()">
+                    ⬇️ Download E-Book
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal untuk Upload E-Book -->
+    <div id="uploadModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeUploadModal()">&times;</span>
+            <h2>Tambah E-Book Baru</h2>
+            <form id="uploadForm" style="margin-top: 1rem;">
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Judul E-Book:</label>
+                    <input type="text" style="width: 100%; padding: 0.8rem; border: 1px solid #d1d5db; border-radius: 8px;" required>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Penulis:</label>
+                    <input type="text" style="width: 100%; padding: 0.8rem; border: 1px solid #d1d5db; border-radius: 8px;" required>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Kategori:</label>
+                    <select style="width: 100%; padding: 0.8rem; border: 1px solid #d1d5db; border-radius: 8px;" required>
+                        <option value="">Pilih Kategori</option>
+                        <option value="regulasi">Regulasi & Kebijakan</option>
+                        <option value="produksi">Panduan Produksi</option>
+                        <option value="distribusi">Sistem Distribusi</option>
+                        <option value="kualitas">Kontrol Kualitas</option>
+                        <option value="keamanan">Keamanan Obat</option>
+                        <option value="teknologi">Teknologi Farmasi</option>
+                    </select>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">File E-Book:</label>
+                    <input type="file" accept=".pdf,.epub,.docx" style="width: 100%; padding: 0.8rem; border: 1px solid #d1d5db; border-radius: 8px;" required>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">Deskripsi:</label>
+                    <textarea style="width: 100%; padding: 0.8rem; border: 1px solid #d1d5db; border-radius: 8px; min-height: 100px;" rows="4"></textarea>
+                </div>
+                <div style="text-align: right;">
+                    <button type="button" class="btn btn-secondary" onclick="closeUploadModal()" style="margin-right: 1rem;">Batal</button>
+                    <button type="submit" class="btn btn-primary">📤 Upload E-Book</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Sample e-book database
+        const ebooksDatabase = {
+            'cpob2024': {
+                title: 'Panduan Cara Pembuatan Obat yang Baik (CPOB) 2024',
+                author: 'Direktorat Produksi dan Distribusi Farmasi',
+                content: `
+                    <h3>BAB I - PENDAHULUAN</h3>
+                    <p>Cara Pembuatan Obat yang Baik (CPOB) merupakan pedoman yang menguraikan aspek produksi dan pengendalian mutu obat. CPOB mencakup seluruh aspek produksi mulai dari bahan awal, tempat, peralatan, dan pelatihan staf, sampai kepada sistem dokumentasi.</p>
+                    
+                    <h3>BAB II - MANAJEMEN MUTU</h3>
+                    <p>Konsep dasar yang harus dipahami adalah bahwa pemastian mutu merupakan suatu konsep yang luas yang mencakup semua hal yang secara individual atau kolektif akan mempengaruhi mutu dari produk yang dihasilkan.</p>
+                    
+                    <h3>BAB III - PERSONALIA</h3>
+                    <p>Pembentukan dan pemeliharaan sistem pemastian mutu yang memuaskan serta pembuatan obat yang benar sangat tergantung pada manusia yang melaksanakannya. Oleh sebab itu hendaklah tersedia personil yang terkualifikasi dalam jumlah yang memadai.</p>
+                    
+                    <h3>BAB IV - BANGUNAN DAN FASILITAS</h3>
+                    <p>Bangunan dan fasilitas untuk pembuatan obat hendaklah memiliki desain, konstruksi dan letak yang memadai, serta disesuaikan kondisinya dan dirawat dengan baik untuk memudahkan pelaksanaan operasi yang benar.</p>
+                `
+            },
+            'distribusi2024': {
+                title: 'Standar Distribusi Farmasi dan Alat Kesehatan',
+                author: 'Tim Ahli Distribusi Farmasi',
+                content: `
+                    <h3>BAB I - SISTEM DISTRIBUSI NASIONAL</h3>
+                    <p>Distribusi farmasi merupakan rangkaian kegiatan dalam rangka penyaluran obat dan alat kesehatan dari produsen hingga ke konsumen akhir. Sistem distribusi yang baik akan menjamin ketersediaan, keterjangkauan, dan kualitas produk farmasi.</p>
+                    
+                    <h3>BAB II - STANDAR GUDANG FARMASI</h3>
+                    <p>Gudang farmasi harus memenuhi persyaratan teknis yang ketat untuk menjamin kualitas produk selama penyimpanan. Kondisi suhu, kelembaban, cahaya, dan kebersihan harus terkontrol dengan baik.</p>
+                    
+                    <h3>BAB III - RANTAI DINGIN (COLD CHAIN)</h3>
+                    <p>Produk farmasi tertentu memerlukan kondisi penyimpanan khusus pada suhu rendah. Sistem rantai dingin harus dijaga dari produsen hingga konsumen untuk memastikan efikasi produk.</p>
+                `
+            },
+            'kualitas2024': {
+                title: 'Kontrol Kualitas Produk Farmasi',
+                author: 'Laboratorium Kontrol Kualitas',
+                content: `
+                    <h3>BAB I - PRINSIP KONTROL KUALITAS</h3>
+                    <p>Kontrol kualitas adalah bagian dari CPOB yang berhubungan dengan pengambilan sampel, spesifikasi dan pengujian serta dengan organisasi, dokumentasi dan prosedur pelulusan yang memastikan bahwa pengujian yang perlu dan relevan telah dilakukan.</p>
+                    
+                    <h3>BAB II - METODE ANALISIS</h3>
+                    <p>Metode analisis yang digunakan dalam kontrol kualitas harus tervalidasi dan sesuai dengan farmakope yang berlaku. Setiap metode harus dapat memberikan hasil yang akurat, presisi, dan reproducible.</p>
+                    
+                    <h3>BAB III - VALIDASI SISTEM</h3>
+                    <p>Validasi adalah tindakan pembuktian dengan cara yang sesuai bahwa tiap bahan, proses, prosedur, kegiatan, sistem, perlengkapan atau mekanisme yang digunakan dalam produksi dan pengawasan akan senantiasa mencapai hasil yang diinginkan.</p>
+                `
+            },
+            'regulasi2024': {
+                title: 'Regulasi Terbaru Industri Farmasi Indonesia',
+                author: 'Badan Pengawas Obat dan Makanan',
+                content: `
+                    <h3>BAB I - PERATURAN PERUNDANG-UNDANGAN</h3>
+                    <p>Industri farmasi di Indonesia diatur oleh berbagai peraturan perundang-undangan mulai dari Undang-Undang, Peraturan Pemerintah, hingga Peraturan Menteri. Setiap pelaku industri wajib memahami dan mematuhi regulasi yang berlaku.</p>
+                    
+                    <h3>BAB II - IZIN EDAR OBAT</h3>
+                    <p>Proses perizinan obat melibatkan evaluasi keamanan, khasiat, dan mutu produk. Dokumentasi yang lengkap dan data klinis yang memadai menjadi syarat utama dalam proses registrasi obat.</p>
+                    
+                    <h3>BAB III - PENGAWASAN PASCA PEMASARAN</h3>
+                    <p>Setelah obat beredar di pasaran, pengawasan terus dilakukan untuk memantau keamanan dan efektivitas produk. Sistem pelaporan efek samping obat menjadi bagian penting dalam pengawasan ini.</p>
+                `
+            },
+            'keamanan2024': {
+                title: 'Sistem Keamanan dan Farmakovigilans',
+                author: 'Pusat Keamanan Obat',
+                content: `
+                    <h3>BAB I - KONSEP FARMAKOVIGILANS</h3>
+                    <p>Farmakovigilans adalah ilmu dan aktivitas yang berhubungan dengan deteksi, penilaian, pemahaman, dan pencegahan efek samping atau masalah lain yang berhubungan dengan obat.</p>
+                    
+                    <h3>BAB II - SISTEM PELAPORAN</h3>
+                    <p>Sistem pelaporan efek samping obat harus mudah diakses oleh tenaga kesehatan dan pasien. Setiap laporan harus ditindaklanjuti dengan evaluasi yang komprehensif.</p>
+                    
+                    <h3>BAB III - MANAJEMEN RISIKO</h3>
+                    <p>Manajemen risiko merupakan pendekatan sistematis untuk meminimalkan risiko yang terkait dengan penggunaan obat sambil memaksimalkan manfaatnya bagi pasien.</p>
+                `
+            },
+            'teknologi2024': {
+                title: 'Teknologi Formulasi Sediaan Farmasi Modern',
+                author: 'Institut Teknologi Farmasi',
+                content: `
+                    <h3>BAB I - TEKNOLOGI FORMULASI TERKINI</h3>
+                    <p>Perkembangan teknologi farmasi telah membawa inovasi dalam formulasi sediaan obat. Teknologi nano, sistem penghantaran obat terkontrol, dan formulasi berbasis biomaterial menjadi trend terdepan.</p>
+                    
+                    <h3>BAB II - SISTEM PENGHANTARAN OBAT</h3>
+                    <p>Sistem penghantaran obat yang efektif dapat meningkatkan bioavailabilitas, mengurangi efek samping, dan meningkatkan kepatuhan pasien. Berbagai teknologi seperti liposom, nanopartikel, dan patch transdermal terus dikembangkan.</p>
+                    
+                    <h3>BAB III - TEKNOLOGI PRODUKSI BERKELANJUTAN</h3>
+                    <p>Industri farmasi modern menerapkan prinsip sustainable manufacturing dengan teknologi yang ramah lingkungan, efisien energi, dan minimalisasi limbah produksi.</p>
+                `
+            }
+        };
+
+        let currentBook = '';
+
+        // Search functionality
+        function searchBooks() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const books = document.querySelectorAll('.book-card');
+            
+            books.forEach(book => {
+                const title = book.querySelector('.book-title').textContent.toLowerCase();
+                const author = book.querySelector('.book-author').textContent.toLowerCase();
+                
+                if (title.includes(query) || author.includes(query)) {
+                    book.style.display = 'block';
+                    book.classList.add('fade-in');
+                } else {
+                    book.style.display = query === '' ? 'block' : 'none';
+                }
+            });
+        }
+
+        // Filter books by category
+        function filterBooks(category) {
+            // This would typically filter the books display
+            // For now, we'll just show an alert
+            alert(`Menampilkan e-books kategori: ${category}`);
+        }
+
+        // Read book online
+        function readBook(bookId) {
+            currentBook = bookId;
+            const book = ebooksDatabase[bookId];
+            
+            if (book) {
+                document.getElementById('modalTitle').textContent = book.title;
+                document.getElementById('bookContent').innerHTML = book.content;
+                document.getElementById('bookModal').style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        // Download book
+        function downloadBook(bookId) {
+            const book = ebooksDatabase[bookId];
+            if (book) {
+                // Simulate download
+                const link = document.createElement('a');
+                link.href = '#';
+                link.download = `${book.title}.pdf`;
+                
+                // Show download notification
+                alert(`Mengunduh: ${book.title}`);
+                
+                // In real implementation, this would trigger actual download
+                console.log(`Downloading book: ${bookId}`);
+            }
+        }
+
+        // Download current book from modal
+        function downloadCurrentBook() {
+            if (currentBook) {
+                downloadBook(currentBook);
+            }
+        }
+
+        // Close modal
+        function closeModal() {
+            document.getElementById('bookModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Admin functions
+        function showUploadForm() {
+            document.getElementById('uploadModal').style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeUploadModal() {
+            document.getElementById('uploadModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function showManageBooks() {
+            alert('Fitur Kelola E-Books - Akan menampilkan daftar semua e-books dengan opsi edit/hapus');
+        }
+
+        function showStatistics() {
+            alert('Fitur Statistik - Akan menampilkan grafik download, views, dan statistik lainnya');
+        }
+
+        function showUserManagement() {
+            alert('Fitur Kelola Pengguna - Akan menampilkan daftar pengguna dan pengaturan akses');
+        }
+
+        function showBooks() {
+            // Scroll to books section
+            document.querySelector('.recent-books').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // function showAbout() {
+        //     // Scroll to about section
+        //     document.querySelector('.about-section').scrollIntoView({ behavior: 'smooth' });
+        // }
+
+        function showAdmin() {
+            // Scroll to admin section
+            document.querySelector('.admin-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Handle upload form submission
+        document.getElementById('uploadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data (in real app, this would be sent to server)
+            const formData = new FormData(this);
+            
+            // Show success message
+            alert('E-Book berhasil diupload! Data akan diproses oleh administrator.');
+            
+            // Close modal and reset form
+            closeUploadModal();
+            this.reset();
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            const bookModal = document.getElementById('bookModal');
+            const uploadModal = document.getElementById('uploadModal');
+            
+            if (e.target === bookModal) {
+                closeModal();
+            }
+            if (e.target === uploadModal) {
+                closeUploadModal();
+            }
+        });
+
+        // Search on Enter key
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchBooks();
+            }
+        });
+
+        // Smooth scrolling for navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add fade-in animation to sections
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            });
+
+            // Observe all major sections
+            document.querySelectorAll('.category-card, .book-card').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // Dynamic statistics update (simulated)
+        function updateStats() {
+            const stats = document.querySelectorAll('.stat-number');
+            stats.forEach((stat, index) => {
+                const currentValue = parseInt(stat.textContent.replace(',', ''));
+                const increment = [1, 0, Math.floor(Math.random() * 5)][index];
+                if (increment > 0) {
+                    stat.textContent = (currentValue + increment).toLocaleString();
+                }
+            });
+        }
+
+        // Update stats every 30 seconds (simulated activity)
+        setInterval(updateStats, 30000);
+    </script>
+</body>
+</html>

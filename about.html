@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tentang - E-Library Farmasi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fffe 100%);
+            border-bottom: 3px solid #2dd4bf;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            object-fit: contain;
+            background: none;
+            padding: 0;
+            display: block;
+        }
+
+        .header-title {
+            color: #0f766e;
+        }
+
+        .header-title h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .header-title p {
+            font-size: 0.9rem;
+            color: #059669;
+            opacity: 0.8;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #0f766e;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            background: #14b8a6;
+            color: white;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #064e3b;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: #059669;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .welcome-section {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 3rem;
+            border: 2px solid #a7f3d0;
+        }
+
+        .director-profile {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .director-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #14b8a6, #a3e635);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .director-info h3 {
+            color: #064e3b;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .director-info p {
+            color: #059669;
+            font-weight: 500;
+        }
+
+        .welcome-message {
+            color: #374151;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            text-align: justify;
+        }
+
+        .welcome-message p {
+            margin-bottom: 1.5rem;
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 2rem;
+            color: #059669;
+            font-weight: 600;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .about-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 2px solid #a7f3d0;
+            transition: all 0.3s ease;
+        }
+
+        .about-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(20, 184, 166, 0.15);
+            border-color: #14b8a6;
+        }
+
+        .about-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #14b8a6, #a3e635);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .about-card h3 {
+            color: #064e3b;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .about-card p {
+            color: #374151;
+            line-height: 1.7;
+        }
+
+        .features-section {
+            background: #f8fffe;
+            padding: 3rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #064e3b;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-weight: 700;
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 5px solid #14b8a6;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            color: #14b8a6;
+        }
+
+        .feature-text {
+            color: #374151;
+            font-weight: 500;
+        }
+
+        .contact-section {
+            background: white;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 2px solid #a7f3d0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: #14b8a6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .contact-details h4 {
+            color: #064e3b;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-details p {
+            color: #374151;
+        }
+
+        .footer {
+            background: #064e3b;
+            color: white;
+            padding: 3rem 0;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .director-profile {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logo {
+                width: 36px;
+                height: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <div class="logo-section">
+                <img src="logo.jpg" alt="Logo" class="logo" style="object-fit:cover;">
+                <div class="header-title">
+                    <h1>Direktorat Produksi dan Distribusi Farmasi</h1>
+                    <p>Kementerian Kesehatan Republik Indonesia</p>
+                </div>
+            </div>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Beranda</a></li>
+                    <li><a href="#" onclick="showBooks()">E-Books</a></li>
+                    <li><a href="#" class="active">Tentang</a></li>
+                    <li><a href="login.html">Login Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-container fade-in">
+            <h1 class="hero-title">Tentang E-Library</h1>
+            <p class="hero-subtitle">
+                Mengenal lebih dekat platform digital untuk kemajuan farmasi Indonesia
+            </p>
+        </div>
+    </section>
+
+    <main class="main-content">
+        <!-- Sambutan Direktur -->
+        <div class="welcome-section fade-in">
+            <div class="director-profile">
+                <div class="director-photo">👨‍💼</div>
+                <div class="director-info">
+                    <h3>Dr. dr. Ahmad Solichan, Sp.FK, M.Kes</h3>
+                    <p>Direktur Produksi dan Distribusi Farmasi</p>
+                    <p>Kementerian Kesehatan Republik Indonesia</p>
+                </div>
+            </div>
+            
+            <div class="welcome-message">
+                <p><strong>Assalamu'alaikum Warahmatullahi Wabarakatuh,</strong></p>
+                
+                <p>Puji syukur kehadirat Allah SWT, atas rahmat dan hidayah-Nya, kami dapat menghadirkan E-Library Farmasi sebagai wujud komitmen Direktorat Produksi dan Distribusi Farmasi dalam mendukung transformasi digital di sektor kesehatan Indonesia.</p>
+                
+                <p>E-Library ini hadir sebagai respons terhadap kebutuhan akan akses informasi yang mudah, cepat, dan terpercaya bagi seluruh stakeholder industri farmasi Indonesia. Melalui platform ini, kami menyediakan berbagai dokumen penting mulai dari regulasi terbaru, panduan teknis, hingga best practices dalam produksi dan distribusi farmasi.</p>
+                
+                <p>Kami berharap E-Library Farmasi dapat menjadi rujukan utama bagi industri farmasi, akademisi, peneliti, dan seluruh pihak yang berkecimpung dalam dunia farmasi. Mari bersama-sama membangun ekosistem farmasi Indonesia yang kuat, inovatif, dan berkelanjutan.</p>
+                
+                <p>Semoga Allah SWT senantiasa memberikan berkah dan kemudahan dalam setiap langkah kita untuk mewujudkan Indonesia yang sehat dan mandiri di bidang farmasi.</p>
+                
+                <p><strong>Wassalamu'alaikum Warahmatullahi Wabarakatuh</strong></p>
+                
+                <div class="signature">
+                    <p>Dr. dr. Ahmad Solichan, Sp.FK, M.Kes</p>
+                    <p>Direktur Produksi dan Distribusi Farmasi</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tentang Platform -->
+        <div class="about-grid">
+            <div class="about-card fade-in">
+                <div class="about-icon">🎯</div>
+                <h3>Visi</h3>
+                <p>Menjadi platform digital terdepan yang menyediakan akses informasi farmasi berkualitas tinggi untuk mendukung kemandirian dan daya saing industri farmasi Indonesia.</p>
+            </div>
+
+            <div class="about-card fade-in">
+                <div class="about-icon">🚀</div>
+                <h3>Misi</h3>
+                <p>Menyediakan akses mudah terhadap regulasi, panduan teknis, dan knowledge base farmasi; Mendukung standardisasi industri farmasi nasional; Memfasilitasi sharing knowledge antar stakeholder.</p>
+            </div>
+
+            <div class="about-card fade-in">
+                <div class="about-icon">⭐</div>
+                <h3>Nilai</h3>
+                <p>Transparansi dalam penyebaran informasi, Akuntabilitas dalam penyediaan konten berkualitas, Inovasi dalam pengembangan platform, dan Kolaborasi untuk kemajuan bersama.</p>
+            </div>
+        </div>
+
+        <!-- Fitur Platform -->
+        <div class="features-section fade-in">
+            <h2 class="section-title">Fitur E-Library</h2>
+            <div class="features-list">
+                <div class="feature-item">
+                    <div class="feature-icon">📚</div>
+                    <div class="feature-text">Koleksi lengkap e-book dan dokumen farmasi</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔍</div>
+                    <div class="feature-text">Pencarian cerdas dengan filter kategori</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📱</div>
+                    <div class="feature-text">Akses multi-platform (desktop, mobile, tablet)</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💾</div>
+                    <div class="feature-text">Download offline untuk akses tanpa internet</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔄</div>
+                    <div class="feature-text">Update regulasi dan panduan terbaru</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">👥</div>
+                    <div class="feature-text">Portal khusus untuk administrator</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-text">Statistik penggunaan dan popularitas</div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🛡️</div>
+                    <div class="feature-text">Keamanan data dan akses terkontrol</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kontak Informasi -->
+        <div class="contact-section fade-in">
+            <h2 class="section-title">Hubungi Kami</h2>
+            <div class="contact-grid">
+                <div>
+                    <div class="contact-info">
+                        <div class="contact-icon">📍</div>
+                        <div class="contact-details">
+                            <h4>Alamat</h4>
+                            <p>Jl. H.R. Rasuna Said Blok X5 Kav. 4-9<br>
+                            Kuningan, Jakarta Selatan 12950<br>
+                            Indonesia</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="contact-icon">📞</div>
+                        <div class="contact-details">
+                            <h4>Telepon</h4>
+                            <p>(021) 5201590<br>
+                            Fax: (021) 5201591</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="contact-info">
+                        <div class="contact-icon">✉️</div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>elibrary@kemkes.go.id<br>
+                            info.farmasi@kemkes.go.id</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-info">
+                        <div class="contact-icon">🌐</div>
+                        <div class="contact-details">
+                            <h4>Website</h4>
+                            <p>www.kemkes.go.id<br>
+                            farmasi.kemkes.go.id</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2024 Direktorat Produksi dan Distribusi Farmasi - Kementerian Kesehatan RI</p>
+            <p>E-Library Farmasi - Platform Digital untuk Kemajuan Farmasi Indonesia</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            });
+
+            document.querySelectorAll('.about-card, .feature-item').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        function showBooks() {
+            window.location.href = 'index.html#books';
+        }
+    </script>
+</body>
+</html>
